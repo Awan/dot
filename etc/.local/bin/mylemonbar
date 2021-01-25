@@ -205,10 +205,4 @@ lemonbar_panel < "$lemonbar_fifo" \
                -F "$fg_main" -B "$bg_main" \
                -f "$fontmain" -f "$fontbold" -n "mylemonbar" &
 
-until bar_id=$(xdo id -a "mylemonbar"); do
-    sleep 1
-done
-
-xdo below -t $(xdo id -n root) $bar_id &
-
 # vim:ft=sh
