@@ -1,0 +1,214 @@
+#!/bin/sh
+# shellcheck disable=2034
+coded_by='
+
+In the name of Allah, the most Gracious, the most Merciful.
+
+ ▓▓▓▓▓▓▓▓▓▓
+░▓ Author ▓ Abdullah <https://abdullah.today>
+░▓▓▓▓▓▓▓▓▓▓ YouTube <https://YouTube.com/AbdullahToday>
+░░░░░░░░░░
+
+░█░░░█▀▀░█▄█░█▀█░█▀█░█▀▄░█▀█░█░█
+░█░░░█▀▀░█░█░█░█░█░█░█▀▄░█░█░░█░
+░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░░▀░
+'
+
+pgrep -x lemonbar > /dev/null && pkill -x lemonbar 
+lemonbar_height=22
+bg_main="#000000"
+bg_alt="#181a20"
+fg_main="#ffffff"
+fg_alt="#a8a8a8"
+red="#ff8059"
+green="#58dd13"
+yellow="#f0ce43"
+fontmain='-xos4-terminesspowerline-bold-r-normal--20-200-72-72-c-100-iso10646-1'
+fontbold='-xos4-terminesspowerline-bold-r-normal--20-200-72-72-c-100-iso10646-1'
+lemonbar_fifo="/tmp/lemonbar-$USER.fifo"
+[ -e "$lemonbar_fifo" ] && rm "$lemonbar_fifo"
+mkfifo "$lemonbar_fifo"
+
+datetime() {
+    echo -n "%{F#00FFFF}%{B#000000}$(date "+%a %d-%m %H:%M:%S")%{F-}%{B-}"
+}
+
+cpu() {
+    cpu=$(ps -eo pcpu | awk 'BEGIN {sum=0.0f} {sum+=$1} END {print sum}')
+    temperature=$(sysctl -n hw.sensors.cpu0.temp0 | cut -d ' ' -f 1 )"\0260C"
+    if expr $cpu '>' 50 1>/dev/null; then
+        echo -n "%{F#FF0000}%{B#000000}"
+    elif expr $cpu '>' 40 1>/dev/null; then
+        echo -n "%{F#FFFF00}%{B#000000}"
+    else
+        echo -n "%{F#00FF00}%{B#000000}"
+    fi
+    echo -n "CPU: $cpu %{F-}%{B-} %{B#000000}%{F#6675B8}$temperature "
+}
+
+wifi() {
+    wifi_state=$(ifconfig iwm0 | awk '/status:/ { print $2 }')
+    ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
+    signals=$(ifconfig iwm0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
+    if [ $wifi_state = "active" ] ; then
+        echo -n "%{F#94DFDB}%{B#000000}"
+    else
+        echo -n "%{F#FF0000}%{B#000000}"
+    fi
+    echo -n "$ssid $signals %{F-}%{B-}"
+}
+
+battery() {
+    is_charger_connected=$(apm -a)
+    if [ $is_charger_connected = 0 ]; then
+        echo -n "%{F#FF0000}%{B#000000}Discharging: %{F-}%{B-}"
+    elif [ $is_charger_connected = 1 ]; then
+        echo -n "%{F#00FF00}%{B#000000}Charging: %{F-}%{B-}"
+    else
+        echo -n "%{F#0000FF}%{B#000000}AC: %{F-}%{B-}"
+    fi
+
+    battery_percentage=$(apm -l)
+    
+    if [ $battery_percentage -gt 60 ]; then
+        echo -n "%{F#00FF00}%{B#000000}$battery_percentage%% %{F-}%{B-}"
+    elif [ $battery_percentage -gt 30 ]; then
+        echo -n "%{F#FFFF00}%{B#000000}$battery_percentage%% %{F-}%{B-}"
+    else
+        echo -n "%{F#FF0000}%{B#000000}$battery_percentage%% %{F-}%{B-}"
+    fi
+
+    unknown_status=$(apm -m)
+    [ "$unknown_status" != "unknown" ] && echo -n " [$unknown_status minutes remaining] "
+}
+
+brightness() {
+    echo -n "%{F#ED8BC8}%{B#000000}$(xbacklight -get | cut -d . -f 1)%% %{F-}%{B-}"
+}
+
+mails() {
+    #count=$(find $HOME/.mail/Inbox/new -type f -print | awk 'END {print NR}')
+    count=$(find $HOME/.mail/Inbox/new -type f -print | wc -l)
+    if [ $count -ne 0 ]; then
+#         echo -n "%{F#FF0000}%{B#000000}Mails: $count%{F-}%{B-}"
+        printf '%%{F#FF0000}%%{B#000000}Mails: %d%%{F-}%%{B-}' $count
+    fi
+}
+
+all_info() {
+    while true; do
+        echo "B" "$(battery)"
+        echo "G" "$(wifi)"
+        echo "H" "$(datetime)"
+        echo "R" "$(brightness)"
+        echo "Y" "$(cpu)"
+        echo "N" "$(mails)"
+        sleep 1
+    done
+}
+
+all_info > "$lemonbar_fifo" &
+bspc subscribe report > "$lemonbar_fifo" &
+
+lemonbar_panel() {
+    while read -r line ; do
+        case $line in
+            B*)
+                battery="${line#?}"
+                ;;
+            R*)
+                brightness="${line#?}"
+                ;;
+            H*)
+                date="${line#?}"
+                ;;
+            G*)
+                wifi="${line#?}"
+                ;;
+            Y*)
+                cpu="${line#?}"
+                ;;
+            N*)
+                mails="${line#?}"
+                ;;
+            W*)
+                wm=
+                IFS=':'
+                set -- ${line#?}
+                while [ "$#" -gt 0 ] ; do
+                    item="$1"
+                    name="${item#?}"
+                    case "$item" in
+                        [mMfFoOuULG]*)
+                            case "$item" in
+                                m*)
+                                    FG="$fg_alt"
+                                    on_focused_monitor=
+                                    name=
+                                    ;;
+                                M*)
+                                    FG="$fg_alt"
+                                    on_focused_monitor=1
+                                    name=
+                                    ;;
+                                [FOU]*)
+                                    if [ -n "$on_focused_monitor" ]; then
+                                         name="%{T2}[${name}]%{T-}"
+                                        FG="$fg_main"
+                                    else
+                                        name=" ${name-}"
+                                        FG="$fg_alt"
+                                    fi
+                                    ;;
+                                f*)
+                                    FG="$fg_alt"
+                                    name=" ${name} "
+                                    ;;
+                                o*)
+                                    FG="$fg_alt"
+                                    name=" ${name}^"
+                                    ;;
+                                u*)
+                                    FG="$red"
+                                    name=" ${name}#"
+                                    ;;
+                                LM|G*?)
+                                    FG="$fg_main"
+                                    name=" ${name} "
+                                    ;;
+                                *)
+                                    FG="$fg_alt"
+                                    name=" * "
+                                    ;;
+                            esac
+                            wm="${wm}%{F$FG}${name}%{F-}"
+                            ;;
+                    esac
+                    shift
+                done
+        esac
+
+        layout() {
+            echo "%{l}$wm %{r}$mails $cpu $wifi $brightness $battery $date"
+        }
+
+        if [ "$(bspc query -M | wc -l)" -gt 1 ]; then
+            printf "%s%s\n" "%{Sf}$(layout)" "%{Sl}$(layout)"
+        else
+            printf "%s\n" "%{Sf}$(layout)"
+        fi
+    done
+}
+
+lemonbar_panel < "$lemonbar_fifo" \
+    | lemonbar -u 1 -p -g "x${lemonbar_height}" \
+               -F "$fg_main" -B "$bg_main" \
+               -f "$fontmain" -f "$fontbold" -n "mylemonbar" &
+
+until bar_id=$(xdo id -a "mylemonbar"); do
+    sleep 1
+done
+
+xdo below -t $(xdo id -n root) $bar_id &
+
+# vim:ft=sh
