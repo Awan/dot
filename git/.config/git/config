@@ -1,0 +1,142 @@
+###############################################################
+#                                                             #
+# In the name of Allah, the most Gracious, the most Merciful. #
+#                                                             #
+#  ▓▓▓▓▓▓▓▓▓▓                                                 #
+# ░▓ Author ▓ Abdullah <https://abdullah.today>               #
+# ░▓▓▓▓▓▓▓▓▓▓                                                 #
+# ░░░░░░░░░░                                                  #
+#                                                             # 
+# ░█▀▀░▀█▀░▀█▀░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀                        #
+# ░█░█░░█░░░█░░█░░░█░█░█░█░█▀▀░░█░░█░█                        #
+# ░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀                        #
+#                                                             #
+############################################################### 
+
+[user]
+	name = Abdullah
+	email = abdullah@abdullah.today
+	signingkey = 0xFC5978915CBC7BC7
+	username = Abdullah
+[push]
+        default = current
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
+[protocol "keybase"]
+	allow = always
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[color]
+	ui = auto
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = cyan 
+[color "status"]
+        added = yellow bold
+        changed = magenta bold
+	untracked = red bold
+[diff]
+        colorMoved = dimmed_zebra
+        renames = true
+        tool = icdiff
+        submodule = log
+[difftool]
+        prompt = false
+[difftool "icdiff"]
+        cmd = icdiff --line-numbers $LOCAL $REMOTE
+[gpg]
+	program = gpg2
+[core]
+	autocrlf = input
+	safecrlf = true
+	editor = $EDITOR
+        #pager = vimpager
+	symlinks = true
+	excludesfile = ~/.config/git/ignore
+#         fsmonitor = some program to find last changed file since given time. (try find)
+	whitespace = trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
+# 	bigFileThreshold = 
+	commentchar = auto
+	preloadindex = true
+	notesRef = refs/notes/commits
+	quotepath = true
+	pager = less
+[alias]
+	last = log -1 HEAD
+        bD = branch -D  # delete branch
+        bm = branch -m # rename current branch to $name
+	co = checkout
+        cob = checkout -b
+        cp = cherry-pick
+        cc = cherry-pick --continue
+	cm = switch -
+	b = branch
+        c = commit
+        ca = commit -a
+        lg = log --pretty=format:\"%C(yellow)%h %ar %C(auto)%d %Creset %s, %Cblue%cn\" --graph --all
+        st = stash save --include-untracked
+        m = commit --message
+        pop = stash pop
+        amd = commit --amend --no-edit
+        force = push --force-with-lease
+        dirs = "!f(){ git diff --dirstat=files,0 HEAD~1 | awk '{print $2}' | cut -d '/' -f 1 | sort | uniq ; }; f"
+	tp = rev-parse --show-toplevel
+	d = diff
+	dc = diff --cached
+	s = status
+[credential]
+	helper = cache
+[help]
+	autocorrect = 1
+[sendemail]
+        smtpEncryption = tls
+        smtpServer = mail.abdullah.today
+        smtpUser = abdullah
+[log]
+        abbrevCommit = true
+[push]
+        followTags = true
+[tag]
+        sort = version:refname
+[pull]
+        rebase = true
+[status]
+	branch = true
+	showStash = true
+	submodulesummary = true
+	showUntrackedFiles = all
+	relativePaths = true
+[rebase] 
+        autoStash = true
+        instructionFormat = %s [%an]
+[sequence]
+        editor = interactive-rebase-tool
+[merge]
+        tool = $(EDITOR)
+        conflictstyle = diff3
+[mergetool "($EDITOR)"]
+        prompt = false
+[github]
+	user = Awan
+[notabug]
+        user = Abdullah
+[gitlab]
+        user = Abdullah
+[advice]
+	addignoredfile = true
+	waitingForEditor = true
+
+# vim: set ft=gitconfig :
+[init]
+	defaultBranch = master
