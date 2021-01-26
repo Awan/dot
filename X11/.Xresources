@@ -1,0 +1,266 @@
+! In the name of Allah, the most Gracious, the most Merciful.
+! 
+!  ▓▓▓▓▓▓▓▓▓▓
+! ░▓ Author ▓ Abdullah <https://abdullah.today>
+! ░▓▓▓▓▓▓▓▓▓▓
+! ░░░░░░░░░░
+! 
+! ░█░█░█▀▄░█▀▀░█▀▀░█▀█░█░█░█▀▄░█▀▀░█▀▀░█▀▀
+! ░▄▀▄░█▀▄░█▀▀░▀▀█░█░█░█░█░█▀▄░█░░░█▀▀░▀▀█
+! ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
+
+
+*.foreground:   #f8f8f2
+*.background:   #272822
+*.cursorColor:  #f8f8f2
+
+! black
+*.color0:       #272822
+*.color8:       #75715e
+
+! red
+*.color1:       #f92672
+*.color9:       #f92672
+
+! green
+*.color2:       #a6e22e
+*.color10:      #a6e22e
+
+! yellow
+*.color3:       #f4bf75
+*.color11:      #f4bf75
+
+! blue
+*.color4:       #66d9ef
+*.color12:      #66d9ef
+
+! magenta
+*.color5:       #ae81ff
+*.color13:      #ae81ff
+
+! cyan
+*.color6:       #a1efe4
+*.color14:      #a1efe4
+
+! white
+*.color7:       #f8f8f2
+*.color15:      #f9f8f5
+
+
+! URxvt 
+
+! if remote host is having problems with rxvt-unicode, copy
+! /usr/share/terminfo/r/rxvt-unicode at hosts ~/.terminfo/r/rxvt-unicode
+
+urxvt*font: xft:mononoki:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=20
+urxvt*boldFont: xft:mononoki:Bold:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:size=20
+urxvt*bolditalicFont: xft:mononoki:Bold:Italic:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:Italic:size=20
+URxvt*letterSpace          : -1
+URxvt*utf                  : 1
+URxvt*locale               : 1
+URxvt.imlocale             : en_US.UTF-8
+URxvt*termName             : xterm-256color
+URxvt*geometry             : 96x30
+URxvt*background           : #1B2B34
+URxvt*reverseVideo         : 0
+URxvt*loginShell           : 0
+URxvt*jumpScroll           : 1
+URxvt*skipScroll           : 1
+URxvt*pastableTabs         : 1
+URxvt*scrollstyle          : plain
+URxvt*scrollBar            : 0
+URxvt*scrollBar_right      : 0
+URxvt*scrollBar_floating   : 0
+URxvt*scrollBar_align      : centre
+URxvt*thickness            : 0
+URxvt*scrollTtyOutput      : 0
+URxvt*scrollTtyKeypress    : 1
+URxvt*scrollWithBuffer     : 1
+URxvt*inheritPixmap        : 0
+URxvt*transparent          : 0
+URxvt*tintColor            : #ffffff
+URxvt*shading              : 145
+URxvt*blurRadius           : 1x65
+URxvt*fading               : 25
+URxvt*fadeColor            : #008B8B
+URxvt*utmpInhibit          : 1
+URxvt*urgentOnBell         : 0
+URxvt*visualBell           : 0
+URxvt*mapAlert             : 0
+URxvt*meta8                : 0
+URxvt*mouseWheelScrollPage : 0
+URxvt*tripleclickwords     : 0
+URxvt*insecure             : 0
+URxvt*cursorUnderline      : 1
+URxvt*cursorBlink          : 0
+URxvt*pointerBlank         : 1
+!URxvt*iconFile             : /usr/local/share/icons/scalable/apps/utilities-terminal-symbolic.svg
+URxvt*pointerShape         : ul_angle
+URxvt*intensityStyles      : 1
+URxvt*saveLines            : 9999
+URxvt*buffered             : 1
+URxvt*depth                : 32
+URxvt*visual               : 0x16f
+URxvt*override-redirect    : 0
+URxvt*externalBorder       : 15
+URxvt*internalBorder       : 15
+URxvt*borderLess           : 0
+URxvt*lineSpace            : 0
+URxvt*skipBuiltinGlyphs    : 0
+URxvt*pointerBlankDelay    : 1
+URxvt*print-pipe           : cat >  /tmp/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt*modifier             :
+URxvt*cutchars             : BACKSLASH " " '"'&()*,;<=>?@[]^{|}\"()*,<>[]{}|''"\
+URxvt*secondaryScreen      : 1
+URxvt*secondaryScroll      : 0
+URxvt*perl-lib             : /home/ak/.urxvt/ext
+URxvt*iso14755             : 1
+URxvt*iso14755_52          : 1
+URxvt*matcher.button       : 2
+URxvt*url-launcher         : /usr/local/bin/chrome
+URxvt*url-select.underline : 1
+URxvt*matcher.rend.0       : Uline Bold fg5
+URxvt*selection.pattern-0  : ([[                           : word                : ]]+)
+URxvt*keysym.M-C-c         : selection                     : rot13
+URxvt*perl-ext-common      : vim,default,matcher,font-size
+URxvt*vim-scrollback       : M-s
+URxvt*vim-scrollback-paste : M-p
+URxvt*clipboard.copycmd    : xsel -ib
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+
+*visualBell          : true
+
+
+
+! Polybar
+
+polybar*background             : #24292A
+polybar*foreground             : #ccd2be
+polybar*fading                 : 15
+polybar*fadeColor              : black
+polybar*cursorColor            : #16A085
+polybar*pointerColorBackground : #2B2C2B
+polybar*pointerColorForeground : #16A085
+polybar*urgent                 : #B34747
+
+! black dark/light
+polybar*color0                 : #24292A
+polybar*color8                 : #3c4140
+
+! red dark/light
+polybar*color1                 : #ff8843
+polybar*color9                 : #c48851
+
+! green dark/light
+polybar*color2                 : #7a8d5c
+polybar*color10                : #aec199
+
+! yellow dark/light
+polybar*color3                 : #a69658
+polybar*color11                : #c4b268
+
+! blue dark/light
+polybar*color4                 : #7b90a9
+polybar*color12                : #91aac7
+
+! magenta dark/light
+polybar*color5                 : #aa6161
+polybar*color13                : #e78484
+
+! cyan dark/light
+polybar*color6                 : #698885
+polybar*color14                : #83a5a1
+
+! white dark/light
+polybar*color7                 : #a8b298
+polybar*color15                : #ccd2be
+
+! pink
+polybar*color16                : #9181E7
+
+! purple
+polybar*color17                : #D7AFF9
+
+
+! XTERM
+
+// XTerm.vt100.faceName         :Fantasque Sans Mono:italic:size=17:antialias=true
+// XTerm.vt100.boldFont         :Fantasque Sans Mono:bold:italic:size=17
+XTerm.vt100.faceName         : Mononoki:size=17
+XTerm.vt100.metaSendsEscape  : 1
+XTerm.vt100.saveLines        : 4096
+XTerm*vt100*geometry         : 80x25
+xterm.pointerShape	     : ul_angle
+xterm.scaleHeight            : 1.01
+xterm*termName               : xterm-256color
+xterm*reverseVideo           : 0
+xterm*loginShell             : 0
+xterm*scrollTtyOutput        : 0
+xterm*scrollBar              : 0
+xterm*charClass		     : 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*eightBitInput          : 0
+xterm*boldMode               : 0
+xterm*colorBDMode            : 1
+xterm*colorBD                : rgb:fc/fc/fc
+XTerm*vt100*translations:    #override \n\
+    Ctrl <KeyPress> Insert: copy-selection(CLIPBOARD) \n\
+        Shift <KeyPress> Insert: insert-selection(CLIPBOARD)
+
+xterm*foreground             : rgb:a8/a8/a8
+xterm*background             : rgb:00/00/00
+xterm*color0                 : rgb:00/00/00
+xterm*color1                 : rgb:a8/00/00
+xterm*color2                 : rgb:00/a8/00
+xterm*color3                 : rgb:a8/54/00
+xterm*color4                 : rgb:00/00/a8
+xterm*color5                 : rgb:a8/00/a8
+xterm*color6                 : rgb:00/a8/a8
+xterm*color7                 : rgb:a8/a8/a8
+xterm*color8                 : rgb:54/54/54
+xterm*color9                 : rgb:fc/54/54
+xterm*color10                : rgb:54/fc/54
+xterm*color11                : rgb:fc/fc/54
+xterm*color12                : rgb:54/54/fc
+xterm*color13                : rgb:fc/54/fc
+xterm*color14                : rgb:54/fc/fc
+xterm*color15                : rgb:fc/fc/fc
+
+
+
+! Dmenu
+
+dmenu.selforeground:	    #474c57
+dmenu.background:	        #ffffff
+dmenu.selbackground:	    #4ec2e8
+dmenu.foreground:	        #474c57
+
+! rofi
+
+rofi.color-enabled: true
+rofi.color-window: #ffffff, #ffffff, #ffffff
+rofi.color-normal: #ffffff, #474c57, #ffffff, #ffffff, #4ec2e8
+rofi.color-active: #ffffff, #fec7cd, #ffffff, #ffffff, #95c1c0
+rofi.color-urgent: #ffffff, #f59335, #ffffff, #ffffff, #f59335  
+
+! Cursor
+
+Xcursor.size                : 16
+
+! Xautolock
+
+Xautolock.locker            : "/usr/bin/physlock -mp 'Aur tum apny Rab ki kon kon c nematon ko jhutlawo gy?'"
+
+! Xidle
+XIdle.timeout               : 120
+
+! Xlock
+XLock.dpmsoff               : 1
+XLock.description           : off
+XLock.echokeys              : off
+XLock.background            : black
+XLock.foreground            : white
+XLock.mode                  : blank
+
