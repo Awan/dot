@@ -8,7 +8,7 @@
 # source important files
 
 source $HOME/.config/mutt/colorrc
-source $HOME/.config/mutt/gpgforak.rc
+source $HOME/.config/mutt/gpgrc
 source ~/.config/mutt/aliases
 
 
