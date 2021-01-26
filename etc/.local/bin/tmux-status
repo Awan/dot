@@ -43,15 +43,15 @@ batterylinux(){
 
 battery() {
     is_charger_connected=$(apm -a)
-    if [ $is_charger_connected = 0 ]; then
-        echo "Discharging: "
-    elif [ $is_charger_connected = 1 ]; then
-        echo -n "Charging: "
-    fi
     battery_percentage=$(apm -l)
+    if [ $is_charger_connected = 0 ]; then
+        echo "Discharging: $battery_percentage% "
+    elif [ $is_charger_connected = 1 ]; then
+        echo -n "Charging: $battery_percentage% "
+    fi
 
     unknown_status=$(apm -m)
-    [ "$unknown_status" != "unknown" ] && echo -n " [$unknown_status minutes remaining] "
+    [ "$unknown_status" != "unknown" ] && echo " [$unknown_status minutes remaining] "
 }
 
 wifi() {
