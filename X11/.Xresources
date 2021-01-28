@@ -52,9 +52,9 @@
 ! if remote host is having problems with rxvt-unicode, copy
 ! /usr/share/terminfo/r/rxvt-unicode at hosts ~/.terminfo/r/rxvt-unicode
 
-urxvt*font: xft:mononoki:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=20
-urxvt*boldFont: xft:mononoki:Bold:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:size=20
-urxvt*bolditalicFont: xft:mononoki:Bold:Italic:size=20,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:Italic:size=20
+urxvt*font: xft:mononoki:size=17,xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=17
+urxvt*boldFont: xft:mononoki:Bold:size=17,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:size=17
+urxvt*bolditalicFont: xft:mononoki:Bold:Italic:size=17,xft:DejaVu\ Sans\ Mono\ for\ Powerline:Bold:Italic:size=17
 URxvt*letterSpace          : -1
 URxvt*utf                  : 1
 URxvt*locale               : 1

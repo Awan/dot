@@ -155,7 +155,7 @@ xset b off
 # Check your hardware using `xinput --list`
 
 xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4 &
-xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.6 &
+# xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.4 &
 
 # Dim the screen
 # xidle -timeout 30 -program ~/.local/bin/dim_screen &
@@ -180,7 +180,7 @@ run redshift -c ~/.config/redshift/redshift.conf
 
 # Set brightness to 30 at boot
 
-#run light -S 30
+xbacklight = 30 &
 
 # Configure multihead.
 
