@@ -23,8 +23,8 @@ fg_alt="#a8a8a8"
 red="#ff8059"
 green="#58dd13"
 yellow="#f0ce43"
-fontmain='-xos4-terminesspowerline-bold-r-normal--20-200-72-72-c-100-iso10646-1'
-fontbold='-xos4-terminesspowerline-bold-r-normal--20-200-72-72-c-100-iso10646-1'
+font="-*-tamsyn-medium-r-*-*-20-*-*-*-*-100-*-*"
+fontbold="-*-tamsyn-bold-r-*-*-20-*-*-*-*-100-*-*"
 lemonbar_fifo="/tmp/lemonbar-$USER.fifo"
 [ -e "$lemonbar_fifo" ] && rm "$lemonbar_fifo"
 mkfifo "$lemonbar_fifo"
@@ -95,6 +95,35 @@ mails() {
     fi
 }
 
+
+music() {
+    stat=$(cmus-remote -Q 2>/dev/null | awk '/status/{print $2}')
+    if [ -z $stat ]; then
+        # do nothing
+        :
+    elif [ $stat = 'paused' ]; then
+        # do nothing
+        :
+    elif [ $stat = 'playing' ]; then
+        artist=$(cmus-remote -C status | grep 'tag\ artist' | cut -d ' ' -f 3-)
+        title=$(cmus-remote -C status | grep 'tag\ title' | cut -d ' ' -f 3-)
+        full_time=$(cmus-remote -C status | awk '/duration/{print $2}')
+        now_time=$(cmus-remote -C status | awk '/position/{print $2}')
+        hours=$(($full_time / 3600))
+        now_hours=$(($now_time / 3600))
+        minutes=$(($full_time % 3600))
+        now_minutes=$(($now_time % 3600))
+        test $hours -gt 0 && dur="$hours:"
+        test $now_hours -gt 0 && now_dur="$now_hours:"
+        duration="$dur$(printf '%02d:%02d' $(($minutes / 60)) $(($minutes % 60)))"
+        position="$now_dur$(printf '%02d:%02d' $(($now_minutes / 60)) $(($now_minutes % 60)))"
+        echo -n "%{F#00ffff}%{B#000000}$artist - %{F#daa520}%{B#000000}$title - %{F#ff00dd}%{B#000000}$position/$duration"
+    fi
+
+
+
+}
+
 all_info() {
     while true; do
         echo "B" "$(battery)"
@@ -103,6 +132,7 @@ all_info() {
         echo "R" "$(brightness)"
         echo "Y" "$(cpu)"
         echo "N" "$(mails)"
+        echo "Z" "$(music)"
         sleep 1
     done
 }
@@ -130,6 +160,9 @@ lemonbar_panel() {
                 ;;
             N*)
                 mails="${line#?}"
+                ;;
+            Z*)
+                music="${line#?}"
                 ;;
             W*)
                 wm=
@@ -189,7 +222,7 @@ lemonbar_panel() {
         esac
 
         layout() {
-            echo "%{l}$wm %{r}$mails $cpu $wifi $brightness $battery $date"
+            echo "%{l}$wm $music %{r}$mails $cpu $wifi $brightness $battery $date"
         }
 
         if [ "$(bspc query -M | wc -l)" -gt 1 ]; then
@@ -203,6 +236,6 @@ lemonbar_panel() {
 lemonbar_panel < "$lemonbar_fifo" \
     | lemonbar -u 1 -p -g "x${lemonbar_height}" \
                -F "$fg_main" -B "$bg_main" \
-               -f "$fontmain" -f "$fontbold" -n "mylemonbar" &
+               -f "$fontbold" -n "mylemonbar" &
 
 # vim:ft=sh
