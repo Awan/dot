@@ -19,42 +19,83 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Install vim-plug 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-" Run PlugInstall if there are missing plugins
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
-
-" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-" Call vim-plug
-
-" Directory to save plugins
-
-call plug#begin('~/.vim/plugged')
-
-" Plugins
-
-Plug 'ryanoasis/vim-devicons' | Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'honza/vim-snippets' | Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'neoclide/coc-snippets' | Plug 'dylanaraps/wal' | Plug 'jiangmiao/auto-pairs'
-
-" Initialize vim-plug
-
-call plug#end()
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"endif
+"
+"" Run PlugInstall if there are missing plugins
+"autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"  \| PlugInstall --sync | source $MYVIMRC
+"\| endif
+"
+"" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"
+"" Call vim-plug
+"
+"" Directory to save plugins
+"
+"call plug#begin('~/.vim/plugged')
+"
+"" Plugins
+"
+"Plug 'ryanoasis/vim-devicons' | Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'honza/vim-snippets' | Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'neoclide/coc-snippets' | Plug 'dylanaraps/wal' | Plug 'jiangmiao/auto-pairs'
+"
+"" Initialize vim-plug
+"
+"call plug#end()
+"
+" Highlight comments italic
+highlight Comment cterm = italic
 
 " Show relative numbers
 set rnu nu
-" w!! to write file as root
-cmap w!! %!doas tee > /dev/null %
+" Set status line
+set laststatus=2
+set statusline=
+" Show file path
+set statusline+=%#Question#
+set statusline+=%f
+" Show current mode
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ '' : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+set statusline+=%#LineNr#
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=\ %m
+set statusline+=%#MoreMsg#
+set statusline+=%r
+set statusline+=%#PmenuSel#
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=%#Constant#
+set statusline+=\ %y
+set statusline+=%#PreProc#
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=%#Tag#
+set statusline+=\ [%{&fileformat}\]
+set statusline+=%#Debug#
+set statusline+=\ %p%%
+set statusline+=%#Number#
+set statusline+=\ %l:%c
 
 function! SaveIfUnsaved()
     if &modified
         :silent! w
     endif
 endfunction
+
+" w!! to write file as root
+cmap w!! %!doas tee > /dev/null %
+
 " au FocusLost,BufLeave * :call SaveIfUnsaved()
 au FocusGained,BufEnter * :silent! !
 
@@ -166,7 +207,6 @@ set modeline
 set nobackup
 set showcmd
 set whichwrap=b,s,<,>,[,]
-set laststatus=2
 set splitbelow splitright
 set tabpagemax=20
 if &t_Co > 16
@@ -434,9 +474,6 @@ if has("multi_byte")
     set encoding=utf-8
     setglobal fileencoding=utf-8
 endif
-
-" Highlight comments italic
-highlight Comment cterm = italic
 
 
 " vim: set ft=vim :
