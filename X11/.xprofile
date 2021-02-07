@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/bin/dash
 coded_by='
 
 In the name of Allah, the most Gracious, the most Merciful.
@@ -18,16 +18,20 @@ In the name of Allah, the most Gracious, the most Merciful.
 user_resources=$HOME/.Xresources
 # custom keymaps
 user_keymaps=$HOME/.Xmodmap
-# custom fonts
-user_fonts_dir=$HOME/.local/share/fonts
-# Powerline fonts for bar
-fonts_dir=/usr/local/share/fonts/powerline/Terminus
 # Inactivity timeout
 inactivity_timeout=180
 # Time before exectuing lock 
 # shellcheck disable=2034
 notify_time=10
 export LANG=en_US.UTF-8
+
+
+for font in $(/bin/ls -d /usr/local/share/fonts/); do
+    xset +fp $font
+    xset fp rehash
+done
+
+xset +fp /usr/local/share/fonts/tamsyn
 
 # For some java apps
 
@@ -46,8 +50,6 @@ walls() {
     walls_dir="$HOME/pix/wall/collection"
     while true;
     do
-#         feh --no-fehbg --randomize --bg-fill "$walls_dir" # remove no-fehbg 
-#         once happy with all wallpapers
          feh --randomize --bg-fill "$walls_dir"
         sleep 120
     done
@@ -109,8 +111,7 @@ xsetroot -cursor_name ul_angle
 
 # Add fonts directories
 
-xset +fp "$user_fonts_dir" && xset fp rehash &
-xset +fp "$fonts_dir" && xset fp rehash &
+xset +fp "$user_fonts_dir" &
 
 # Start urxvt in daemon mode
 
@@ -157,6 +158,9 @@ xset b off
 xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4 &
 # xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.4 &
 
+# Palm detection
+# synclient PalmDetect=1 &
+
 # Dim the screen
 # xidle -timeout 30 -program ~/.local/bin/dim_screen &
 
@@ -176,7 +180,7 @@ run redshift -c ~/.config/redshift/redshift.conf
 
 # Start tmux if not already running
 
-[ -z "$TMUX" ] && tmux new-session -s "$USER" -d 
+# [ -z "$TMUX" ] && tmux new-session -s "$USER" -d 
 
 # Set brightness to 30 at boot
 
@@ -184,7 +188,7 @@ xbacklight = 30 &
 
 # Configure multihead.
 
-if [ "$(xrandr -q | awk '/ connected / {print $1}' | wc -l)" -eq 1 ]; then
+if [ "$(xrandr -q | awk '/ connected / {print $1}' | wc -l | tr -d '\n')" -eq 1 ]; then
   tab --primary
 else
   # shellcheck disable=SC2119
@@ -194,9 +198,10 @@ fi
 # Start a scratchpad
 
 #alacritty --dimensions 55 15 --position 550 175 -t 'scratchpad' &
-#sleep 1
-#urxvtc -T 'scratchpad' -geometry 75x20 
+# sleep 1
+# urxvtc -T 'scratchpad' -geometry 75x20 
 #termite -t scratchpad
 #xfce4-terminal -T scratchpad --font='Fantasque Sans Mono Italic 16'
 
 # vim:ft=sh
+

@@ -16,4 +16,4 @@ In the name of Allah, the most Gracious, the most Merciful.
 
 
 [ -f ~/.xprofile ] && . ~/.xprofile
-bspwm >/tmp/bspwm-"$USER".log 2>&1
+exec bspwm >/tmp/bspwm-"$USER".log 2>&1
