@@ -17,7 +17,7 @@ In the name of Allah, the most Gracious, the most Merciful.
 toggle_flag() {
     id=$(bspc query -N -n "focused")
     if [ -n "$id" ]; then
-        if [ $(xprop -id "$id" | grep "_SCRATCH_ORDER" | wc -l) -gt 0 ]; then
+        if [ $(xprop -id "$id" | grep -c "_SCRATCH_ORDER") -gt 0 ]; then
             xprop -id $id -remove _SCRATCH_ORDER
             xprop -id $id -remove _SCRATCH_VISIBILITY
         else
@@ -30,14 +30,14 @@ toggle_flag() {
 
 switch_app() {
     id=$(bspc query -N -n "focused")
-    if [ $(xprop -id "$id" | grep "_SCRATCH_VISIBILITY(INTEGER) = 1" | wc -l) -gt 0 ]; then
+    if [ $(xprop -id "$id" | grep -c "_SCRATCH_VISIBILITY(INTEGER) = 1") -gt 0 ]; then
         xprop -id $id -f _SCRATCH_VISIBILITY 8i -set _SCRATCH_VISIBILITY 0
         xdotool windowunmap $id
     fi
 
     sid=$(
         id=$(bspc query -N -n "focused");
-        for w in $(xwininfo -root -children | grep -e "^\s*0x[0-9a-f]\+" -o); do
+        for w in $(xwininfo -root -children | grep -E "0x[0-9a-f]{6,}" -o); do
             if [ "$w" != "$id" ]; then
                 t=$(xprop -id $w _SCRATCH_ORDER | grep ' = \(.*\)')
                 if [ -n "$t" ]; then
