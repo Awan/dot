@@ -14,7 +14,7 @@ In the name of Allah, the most Gracious, the most Merciful.
 ░░▀░░▀░▀░▀▀▀░▀░▀░░░▀▀▀░░▀░░▀░▀░░▀░░▀▀▀░▀▀▀
 '
 
-batterylinux(){
+battery1() {
   SYSFS=/sys/class/power_supply
   BATTERY=BAT0
   MAINS=AC
@@ -45,9 +45,9 @@ battery() {
     is_charger_connected=$(apm -a)
     battery_percentage=$(apm -l)
     if [ $is_charger_connected = 0 ]; then
-        echo "Discharging: $battery_percentage% "
+        echo "Discharging: $battery_percentage%% "
     elif [ $is_charger_connected = 1 ]; then
-        echo -n "Charging: $battery_percentage% "
+        echo -n "Charging: $battery_percentage%% "
     fi
 
     unknown_status=$(apm -m)
