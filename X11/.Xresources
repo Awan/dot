@@ -10,42 +10,34 @@
 ! ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
 
-*.foreground:   #f8f8f2
-*.background:   #272822
 *.cursorColor:  #f8f8f2
+*background:  #575757
+*foreground:  #dcdccc
 
-! black
-*.color0:       #272822
-*.color8:       #75715e
-
-! red
-*.color1:       #f92672
-*.color9:       #f92672
-
-! green
-*.color2:       #a6e22e
-*.color10:      #a6e22e
-
-! yellow
-*.color3:       #f4bf75
-*.color11:      #f4bf75
-
-! blue
-*.color4:       #66d9ef
-*.color12:      #66d9ef
-
-! magenta
-*.color5:       #ae81ff
-*.color13:      #ae81ff
-
-! cyan
-*.color6:       #a1efe4
-*.color14:      #a1efe4
-
-! white
-*.color7:       #f8f8f2
-*.color15:      #f9f8f5
-
+!black
+*color0:      #666666
+*color8:      #888888
+!red
+*color1:      #ff8278
+*color9:      #ff8278
+!green
+*color2:      #bde077
+*color10:     #bde077
+!yellow
+*color3:      #eadc84
+*color11:     #eadc84
+!blue
+*color4:      #77bee0
+*color12:     #77bee0
+!magenta
+*color5:      #dd91f3
+*color13:     #dd91f3
+!cyan
+*color6:      #ffc178
+*color14:     #ffc178
+!white
+*color7:      #dddddd
+*color15:     #cccccc
 
 ! URxvt 
 
@@ -259,8 +251,94 @@ XIdle.timeout               : 120
 ! Xlock
 XLock.dpmsoff               : 1
 XLock.description           : off
-XLock.echokeys              : off
 XLock.background            : black
 XLock.foreground            : white
-XLock.mode                  : blank
+XLock.mode                  : clock
+XLock.erasemode:
+XLock.erasedelay            : 400
+XLock.erasetime             : 2
+XLock.allowaccess           : off
+XLock.debug                 : off
+XLock.description           : on
+XLock.echokeys              : on
+XLock.echokey               : *
+XLock.enablesaver           : off
+XLock.resetsaver            : on
+XLock.grabmouse             : on
+XLock.grabserver            : off
+XLock.hide                  : on
+XLock.install               : on
+XLock.mousemotion           : off
+XLock.mono                  : off
+XLock.sound                 : off
+XLock.showdate              : on
+XLock.timeelapsed           : off
+XLock.usefirst              : on
+XLock.visual                :
+XLock.nice                  : 10
+XLock.lockdelay             : 0
+XLock.unlockdelay           : 0
+XLock.timeout               : 30
+XLock.font                  : -*-tamsyn-medium-*-*-*-17-*-*-*-*-*-*-*
+XLock.planfont              : -*-tamsyn-medium-*-*-*-17-*-*-*-*-*-*-*
+XLock.username              : Name:
+XLock.password              : Password:
+XLock.info                  : Enter password to unlock; select icon to lock.
+XLock.validate              : Validating login...
+XLock.invalid               : Invalid login.
+XLock.invalidCapsLock       : Invalid login, Caps Lock on.
+XLock.attempt               : failed attempt.
+XLock.attempts              : failed attempts.
+XLock.geometry              :
+XLock.icongeometry          :
+XLock.wireframe             : off
+XLock.use3d                 : off
+XLock.delta3d               : 1.5
+XLock.none3d                : Black
+XLock.right3d               : Blue
+XLock.left3d                : Red
+XLock.both3d                : Magenta
+XLock.program               : fortune -s
+XLock.messagesfile          :
+XLock.messagefile           :
+XLock.message               :
+XLock.messagefont           : -*-tamsyn-medium-*-*-*-17-*-*-*-*-*-*-*
+XLock.logoutButton          : -1
+XLock.logoutButtonLabel     : Logout
+XLock.logoutButtonHelp      : Click here to logout
+XLock.logoutFailedString    : Auto-logout failed
+XLock.startCmd              :
+XLock.endCmd                :
+XLock.pipepassCmd           :
+XLock.logoutCmd             :
+XLock.dpmsstandby           : -1
+XLock.dpmssuspend           : -1
+XLock.dpmsoff               : -1
+XLock.mailCmd               :
+XLock.mailIcon              :
+XLock.nomailIcon            :
+XLock.blank.delay           : 3000000
+XLock.blank.count           : 1
+XLock.blank.cycles          : 1
+XLock.blank.size            : 1
+XLock.blank.ncolors         : 64
+XLock.blank.saturation      : 1
+XLock.blank.bitmap          :
+XLock.random.delay          : 1
+XLock.random.count          : 1
+XLock.random.cycles         : 1
+XLock.random.size           : 1
+XLock.random.ncolors        : 64
+XLock.random.saturation     : 1
+XLock.random.bitmap         :
+XLock.random.duration       : 60
+XLock.random.modelist       :
+XLock.random.sequential     : False
+XLock.random.fullrandom     : True
 
+! Misc
+*VT100.utf8                 : 1
+*VT100*geometry             : 160x50
+*VT100.colorBDMode          : True
+*VT100.colorULMode          : True
+*VT100.veryBoldColors       : 6
