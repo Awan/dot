@@ -45,9 +45,6 @@
 "
 "call plug#end()
 "
-" Highlight comments italic
-highlight Comment cterm = italic
-
 " Show relative numbers
 set rnu nu
 " Set status line
@@ -69,6 +66,7 @@ let g:currentmode={
        \}
 set statusline+=%#LineNr#
 set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%{&paste?'[paste]':''}
 set statusline+=\ %m
 set statusline+=%#MoreMsg#
 set statusline+=%r
@@ -86,7 +84,6 @@ set statusline+=%#Debug#
 set statusline+=\ %p%%
 set statusline+=%#Number#
 set statusline+=\ %l:%c
-
 function! SaveIfUnsaved()
     if &modified
         :silent! w
@@ -95,7 +92,8 @@ endfunction
 
 " w!! to write file as root
 cmap w!! %!doas tee > /dev/null %
-
+" No comments with o
+set formatoptions-=o
 " au FocusLost,BufLeave * :call SaveIfUnsaved()
 au FocusGained,BufEnter * :silent! !
 
@@ -474,6 +472,10 @@ if has("multi_byte")
     set encoding=utf-8
     setglobal fileencoding=utf-8
 endif
+
+" Highlight comments italic 
+highlight Comment cterm=italic
+
 
 
 " vim: set ft=vim :
