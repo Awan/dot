@@ -14,33 +14,6 @@ In the name of Allah, the most Gracious, the most Merciful.
 ░░▀░░▀░▀░▀▀▀░▀░▀░░░▀▀▀░░▀░░▀░▀░░▀░░▀▀▀░▀▀▀
 '
 
-battery1() {
-  SYSFS=/sys/class/power_supply
-  BATTERY=BAT0
-  MAINS=AC
-  POWER_NOW=$(cat $SYSFS/$BATTERY/power_now)
-  ENERGY_NOW=$(cat $SYSFS/$BATTERY/energy_now)
-  ENERGY_FULL=$(cat $SYSFS/$BATTERY/energy_full)
-  ENERGY_FULL_DESIGN=$(cat $SYSFS/$BATTERY/energy_full_design)
-  AC_ON=$(cat $SYSFS/$MAINS/online)
-
-  printf "%s%%" "$(( ENERGY_NOW * 100 / ENERGY_FULL ))"
-  if [ $AC_ON -ne 0 ] ; then
-    if [ $POWER_NOW -ne 0 ] ; then
-      printf " charging in %smin" "$(( (ENERGY_FULL - ENERGY_NOW) * 60 / POWER_NOW ))"
-    else
-      printf " not charging"
-    fi
-  else
-    if [ $POWER_NOW -ne 0 ] ; then
-      printf " discharging in %smin" "$(( ENERGY_NOW * 60 / POWER_NOW ))"
-    else
-      printf " not discharging"
-    fi
-  fi
-  printf " (%s%% of design)\n" "$(( ENERGY_FULL * 100 / ENERGY_FULL_DESIGN ))"
-}
-
 battery() {
     is_charger_connected=$(apm -a)
     battery_percentage=$(apm -l)
@@ -76,45 +49,11 @@ mails()
   then
     echo ${mails_count} new mails
   fi
-    
 }
-
-
-ram()
-{
-  ram=$(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')
-  echo 'RAM: '$ram%
-}
-
-
-just_ram()
-{
-  echo $(free | awk '/Mem:/ {print int($3/$2 * 100.0)}')%
-  
-}
-
 
 date_time()
 {
   date +'%a %d-%m %H:%M'
-}
-
-
-music()
-{
-  is_playing=$(mpc | grep "^\[playing\]" | awk '{print $1}')
-  how_long_the_tags_are=$(mpc | head -1 | wc -c)
-  shorter_tags=$(mpc --format='[%title% - %artist%]' current | head -1 | head -c 30)
-
-  if [ "$is_playing" = "[playing]" ]; then
-    if [ "$how_long_the_tags_are" -lt 30 ]; then
-      echo "$(mpc --format='[%title% - %artist%]' current)"
-    else
-      echo "$shorter_tags..."
-    fi
-  fi
-    
-
 }
 
 cpu() {
@@ -123,12 +62,5 @@ cpu() {
     echo "$cpu $temperature"
 }
 
-temperature()
-{
-  temp=$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))°c
-  echo $temp
-}
 
-
-
-echo `cpu` - `temperature` - `mails` - `wifi` - `battery` - `date_time`
+echo `cpu` - `mails` - `wifi` - `battery` - `date_time`
