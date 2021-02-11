@@ -47,6 +47,8 @@
 "
 " Show relative numbers
 set rnu nu
+" Set colorscheme
+color afterglow
 " Set status line
 set laststatus=2
 set statusline=
