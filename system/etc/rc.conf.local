@@ -1,0 +1,9 @@
+apmd_flags="-C -z 45"
+check_quotas=NO
+ntpd_flags=
+pflogd_flags=NO
+sensorsd_flags="-c 5"
+slaacd_flags=NO
+smtpd_flags=NO
+sndiod_flags"-w off"
+xenodm_flags=YES
