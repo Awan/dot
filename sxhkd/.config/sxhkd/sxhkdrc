@@ -246,12 +246,12 @@ Print
 # Music little backward/forward
 
 alt + bracket{left,right}
-    mpc seek {-15,+15}
+    cmus-remote -k {-15,+15}
 
 # Music backward/forward
 
 alt + shift + bracket{left,right}
-    mpc seek {-100,+100}
+    cmus-remote -k {-100,+100}
  
 # Lock the screen
 
