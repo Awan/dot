@@ -45,6 +45,10 @@
 "
 "call plug#end()
 "
+" Use vim settings rather than vi
+if &compatible
+    set nocompatible
+endif
 " Show relative numbers
 set rnu nu
 " Set colorscheme
@@ -114,7 +118,10 @@ set sessionoptions-=curdir
 
 silent! set numberwidth=4
 
-set hlsearch
+if &t_Co > 2 || has("gui_running")
+    set hlsearch
+endif
+
 autocmd! bufwritepost $HOME/.Xresources !xrdb -load $HOME/.Xresources 
 autocmd! bufwritepost $HOME/.zshrc      !source $HOME/.zshrc
 autocmd! bufwritepost $HOME/.config/sxhkd/sxhkdrc       !pkill -USR1 -x sxhkd
@@ -139,7 +146,10 @@ set showmode
 set fo+=w
 set ai
 set sc
-set incsearch
+if has('reltime')
+    set incsearch
+endif
+set nrformats=octal
 set completeopt=menuone
 set ignorecase
 set gdefault
@@ -161,8 +171,7 @@ let mapleader=" "
 set hidden
 set autoread
 set history=10000
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 set linebreak
 set display+=lastline
 set display+=truncate
@@ -272,10 +281,15 @@ inoremap # #
 autocmd BufEnter *.md exe 'noremap <F5> :!google-chrome-stable %:p<CR>'
 au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 au BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
+"autocmd BufReadPost *
+"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal! g`\"" |
+"     \ endif
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~#'commit'
+            \ | exe "normal! g`\""
+            \ | endif
+
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -477,6 +491,10 @@ endif
 
 " Highlight comments italic 
 highlight Comment cterm=italic
+
+if has('syntax') && has('eval')
+    packadd! matchit
+endif
 
 
 
