@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/bin/dash
 # shellcheck disable=2034
 coded_by='
 
