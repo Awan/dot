@@ -1,0 +1,183 @@
+# In the name of Allah, the most Gracious, the most Merciful.
+#
+#  ▓▓▓▓▓▓▓▓▓▓ 
+# ░▓ Author ▓ Abdullah <https://abdullah.today> 
+# ░▓▓▓▓▓▓▓▓▓▓ 
+# ░░░░░░░░░░ 
+
+# ncmpcpp configuration file
+
+
+# User interface
+
+user_interface = "alternative" (you must comment it for album art)
+
+# Host
+
+mpd_host = "localhost"
+
+# Port
+
+mpd_port = "6600"
+
+# Configuration directory
+
+ncmpcpp_directory = "~/.config/ncmpcpp"
+
+# Collection directory for Host
+
+mpd_music_dir = "~/mus"
+
+# Lyrics directory. Must be created or you'll get one in $HOME
+
+lyrics_directory = "~/mus/lyrics"
+
+# Progress of running song look
+
+progressbar_look = "─╼"
+
+# Collection format
+
+song_library_format = "{%t - }{%a}|{%f}"
+
+# Playing song's status
+
+song_status_format = "{(%l) }{%a - }{%t}|{%f}"
+
+# Columns format
+
+song_columns_list_format = "(35)[red]{t} (15)[magenta]{b} (50)[cyan]{a}"
+
+# Visualizer path
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+
+# Visualizer name
+
+visualizer_output_name = "Hacker's Visualizer"
+
+# Visualizer interval
+
+visualizer_sync_interval = "15"
+
+# If stereo visualizer enabled
+
+visualizer_in_stereo = "yes"
+
+# Visualizer color
+
+visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
+
+# Visualizer look
+
+visualizer_look =  "●┃"
+
+# Visualizer type
+
+#visualizer_type = "spectrum" (spectrum/wave)
+
+# On start what's shown
+
+startup_screen=playlist
+
+# Show playlist remaining time
+
+playlist_show_remaining_time = "yes"
+
+# If enabled, total/remaining playlist time displayed  in  statusbar
+
+playlist_shorten_total_times = yes
+
+# Default display mode for Playlist. columns/classic
+#
+playlist_display_mode = columns
+
+# Default display mode for Browser. classic/columns
+#
+browser_display_mode = columns
+
+# Default display mode for Search engine.
+#              
+search_engine_display_mode = columns
+
+# Default display mode for Playlist editor. 
+#
+playlist_editor_display_mode = classic
+
+
+# If enabled, current MPD host will be shown in playlist.
+
+playlist_show_mpd_host = no
+
+# If enabled, separators will be placed between albums.
+
+playlist_separate_albums = yes
+
+# Split screen into half. Half playlist and other visualizer
+
+# startup_slave_screen = "visualizer"
+
+# Focus slave screen
+
+startup_slave_screen_focus = "no"
+
+# Jump to current song on startup
+
+jump_to_now_playing_song_at_start = "yes"
+
+# Execute shell command once song is changed
+
+# execute_on_song_change = "~/.config/ncmpcpp/cover" (uncomment it for album art)
+
+#user_interface = "classic" (uncomment it for album art)
+
+# Window title
+
+enable_window_title = "yes"
+
+# Header visible or not
+
+header_visibility = "yes" 
+
+# Show titles above time, song, album, artist, (no need, I already know whats in
+# which column)
+
+titles_visibility = "no" 
+
+# Messages delay interval
+
+message_delay_time = "1" 
+
+# Status bar visibility
+
+statusbar_visibility = "yes"
+
+# Make it colorful
+
+colors_enabled = "yes"
+
+# No cyclic scrolling, I use `gg` & `G` instead 
+
+cyclic_scrolling = "no"
+
+# No duplicate files in playlist if you add multiple times
+
+space_add_mode = "add_remove"
+
+# Clock format. If you enable seconds, it will need more screen else clock won't
+# be displayed
+
+clock_display_seconds = "no"
+
+# Remaining time of currently playing song
+display_remaining_time = "no"
+
+# Editor path
+
+external_editor = $(which vim)
+
+# My editor is console application
+
+use_console_editor = "yes"
+
+# 
