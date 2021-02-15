@@ -225,7 +225,7 @@ lemonbar_panel() {
             echo "%{l}$wm $music %{r}$mails $cpu $wifi $brightness $battery $date"
         }
 
-        if [ "$(bspc query -M | wc -l)" -gt 1 ]; then
+        if [ "$(bspc query -M | wc -l | tr -d ' ')" -gt 1 ]; then
             printf "%s%s\n" "%{Sf}$(layout)" "%{Sl}$(layout)"
         else
             printf "%s\n" "%{Sf}$(layout)"

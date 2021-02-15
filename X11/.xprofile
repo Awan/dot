@@ -72,8 +72,8 @@ export DESKTOP_SESSION=bspwm
 
 tab() {
   # Configure only laptop's screen if no external monitor is connected.
-  xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --brightness 1.0 \
-    --gamma 0.76:0.75:0.68 "$@"
+  xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 \
+    --gamma 0.75:0.75:0.75 "$@"
 }
 
 # shellcheck disable=SC2120
