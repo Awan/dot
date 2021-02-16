@@ -76,7 +76,7 @@ set statusline+=%{&paste?'[paste]':''}
 set statusline+=\ %m
 set statusline+=%#MoreMsg#
 set statusline+=%r
-set statusline+=%#PmenuSel#
+set statusline+=%#StatusLine#
 set statusline+=%m
 set statusline+=%=
 set statusline+=%#CursorColumn#

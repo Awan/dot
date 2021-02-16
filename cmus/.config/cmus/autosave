@@ -47,6 +47,7 @@ set color_win_title_bg=234
 set color_win_title_fg=45
 set confirm_run=true
 set continue=true
+set continue_album=true
 set device=/dev/rcd0c
 set display_artist_sort_name=false
 set follow=false
@@ -100,7 +101,10 @@ set softvol=false
 set softvol_state=0 0
 set start_view=tree
 set status_display_program=
+set stop_after_queue=false
 set time_show_leading_zero=true
+set tree_width_max=0
+set tree_width_percent=33
 set wrap_search=true
 bind browser backspace browser-up
 bind browser i toggle show_hidden
