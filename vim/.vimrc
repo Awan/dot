@@ -77,7 +77,6 @@ set statusline+=\ %m
 set statusline+=%#MoreMsg#
 set statusline+=%r
 set statusline+=%#StatusLine#
-set statusline+=%m
 set statusline+=%=
 set statusline+=%#CursorColumn#
 set statusline+=%#Constant#
@@ -496,6 +495,7 @@ if has('syntax') && has('eval')
     packadd! matchit
 endif
 
+vmap rot :!tr A-Za-z N-ZA-Mn-za-m<CR>
 
 
 " vim: set ft=vim :
