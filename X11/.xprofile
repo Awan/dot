@@ -163,7 +163,7 @@ xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4 &
 
 # Dim the screen
 # xidle -timeout 30 -program ~/.local/bin/dim_screen &
-
+run xdimmer -t 30 -s 50 -p 1 -b 20 &
 
 # Xidle
 xidle &
