@@ -277,7 +277,7 @@ my_panel() {
 								fi
 								;;
 						esac
-						wm="${wm}%{F${FG}}%{B${BG}}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}"
+						wm="${wm}%{F${FG}}%{B${BG}}%{A:bspc desktop -f ${name}:}%{A5:bspc desktop -f next:}%{A4:bspc desktop -f prev:} ${name} %{A}%{A}%{A}%{B-}%{F-}"
 						;;
 					[LTG]*)
 						# layout, state and flags
