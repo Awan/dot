@@ -151,6 +151,8 @@ endif
 set nrformats=octal
 set completeopt=menuone
 set ignorecase
+set wrapscan
+set magic
 set gdefault
 com! -complete=file -bang -nargs=? W :w<bang> <args>
 set smartcase
@@ -496,6 +498,10 @@ if has('syntax') && has('eval')
 endif
 
 vmap rot :!tr A-Za-z N-ZA-Mn-za-m<CR>
+vnoremap < <gv
+vnoremap > >gv
+nmap <leader>s :%s//g<Left><Left>
+set wildignore+=*.opus,*.flac,*.pdf,*.jpg,*.png,*.so,*.swp,*.zip,*.gzip,*.bz2,*.tar,*.xz,*.lrzip,*.lrz,*.mp3,*.ogg,*.mp4,*.gif,*.jpeg,*.webm
 
 
 " vim: set ft=vim :

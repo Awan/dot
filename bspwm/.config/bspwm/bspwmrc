@@ -182,6 +182,6 @@ bspc config pointer_modifier mod4
 bspc config pointer_action3 resize_side
 bspc config pointer_action3 resize_corner
 bspc config pointer_action1 move
-~/.local/bin/mylemonbar
+~/.local/bin/my_panel &
 sleep 1
 urxvtc -T "scratchpad" -geometry 75x20
