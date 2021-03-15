@@ -250,7 +250,8 @@ tre()
   tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-ix() {
+ix() 
+{
   local opts
   local OPTIND
   [ -f "$HOME/.netrc" ] && opts='-n'
@@ -273,7 +274,8 @@ ix() {
           echo "^C to cancel, ^D to send."
         }
       curl $opts -F f:1='<-' $* ix.io/$id
-    }
+}
+
 shebang() {
     if i=$(which $1);
     then
@@ -887,7 +889,7 @@ dep ()
   cd "$rendered_dir"
   git add .
   echo "Run git status and commit now!"
-  git commit -am "$msg" && git push; cd "$source_dir"; git push
+  git commit -am "$msg" && git push; cd "${source_dir}"; git push
   echo "$site_url is live now!" 
 }
 
