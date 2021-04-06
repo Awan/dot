@@ -937,7 +937,7 @@ isinstalled () {
 
 newest () 
 {
-    /usr/bin/ls -Art $1* | tail -n 1
+    /bin/ls -Art $1* | tail -n 1
 }
 
 bbb ()
