@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+if [[ $commands[pkg_add] ]]; then
+    alias pkgadd='doas pkg_add'
+    alias pkgdel='doas pkg_delete'
+fi
 if [[ $commands[notmuch] ]]; then
   alias vimail="vim -c NotMuch"
 fi
