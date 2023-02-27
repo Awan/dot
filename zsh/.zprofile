@@ -3,6 +3,9 @@
 # ░▓▓▓▓▓▓▓▓▓▓ 
 # ░░░░░░░░░░ 
 
+# Start keychain for ssh keys
+
+eval $(keychain --quiet --eval id_ed25519)
 
 # Start X at login    
     

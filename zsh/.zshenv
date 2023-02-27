@@ -65,12 +65,12 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-unset SSH_AUTH_SOCK
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
+#unset SSH_AUTH_SOCK
+#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#fi
+#export GPG_TTY=$(tty)
+#gpg-connect-agent updatestartuptty /bye >/dev/null
 #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 #if [[ -n "$SSH_CONNECTION" ]] ;then
 #    export PINENTRY_USER_DATA="USE_CURSES=1"
