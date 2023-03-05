@@ -72,14 +72,23 @@ cpu() {
 
 wifi() {
     wifi_state=$(ifconfig iwm0 | awk '/status:/ { print $2 }')
-    ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
-    signals=$(ifconfig iwm0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
-    if [ $wifi_state = "active" ] ; then
-        echo -n "%{F#94DFDB}%{B#000000}"
+    if [ $wifi_state = "no" ]; then
+        :
     else
-        echo -n "%{F#FF0000}%{B#000000}"
+        ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
+        echo -n "%{F#94DFDB}%{B#000000}"
+        echo -n "$ssid %{F-}%{B-}"
     fi
-    echo -n "$ssid $signals %{F-}%{B-}"
+    #if [ $ssid = \"f\" ]; then
+    #    ssid = " "
+    #fi
+    #    signals=$(ifconfig iwm0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
+    #if [ $wifi_state = "active" ] ; then
+    #    echo -n "%{F#94DFDB}%{B#000000}"
+    #else
+    #    echo -n "%{F#FF0000}%{B#000000}"
+    #fi
+    #echo -n "$ssid $signals %{F-}%{B-}"
 }
 
 battery() {
@@ -112,7 +121,7 @@ brightness() {
 
 mails() {
     #count=$(find $HOME/.mail/Inbox/new -type f -print | awk 'END {print NR}')
-    count=$(find $HOME/.mail/Inbox/new -type f -print | wc -l)
+    count=$(find $HOME/.local/share/email/x1c/INBOX/new -type f -print | wc -l)
     if [ $count -ne 0 ]; then
 #         echo -n "%{F#FF0000}%{B#000000}Mails: $count%{F-}%{B-}"
         printf '%%{F#FF0000}%%{B#000000}Mails: %d%%{F-}%%{B-}' $count
