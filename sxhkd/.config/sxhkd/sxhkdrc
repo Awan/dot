@@ -162,7 +162,7 @@ alt + n
 
 # Toggle cmus
 
-alt + v
+alt + b
     cmus-remote -u || notify-send 'cmus is not running'
 
 # Rotate desktop
