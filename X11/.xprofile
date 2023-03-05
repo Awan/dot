@@ -47,11 +47,11 @@ run() {
 # Wallpapers management
 
 walls() {
-    walls_dir="$HOME/pix/wall/collection"
+    walls_dir="$HOME/pix/wall/cuties/dark"
     while true;
     do
          feh --randomize --bg-fill "$walls_dir"
-        sleep 120
+        sleep 30
     done
 }
 
@@ -115,7 +115,7 @@ xset +fp "$user_fonts_dir" &
 
 # Start urxvt in daemon mode
 
-run urxvtd -q -o -f 
+# run urxvtd -q -o -f 
 
 # No mouse when idle
 
@@ -155,11 +155,11 @@ xset b off
 # Accelerate the mouse and touchpad
 # Check your hardware using `xinput --list`
 
-xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4 &
+# xinput set-prop "/dev/wsmouse" "Device Accel Constant Deceleration" 0.4 &
 # xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.4 &
 
 # Palm detection
-# synclient PalmDetect=1 &
+synclient PalmDetect=1 &
 
 # Dim the screen
 # xidle -timeout 30 -program ~/.local/bin/dim_screen &
@@ -176,7 +176,7 @@ xidle &
 # Redshift for less eye strain
 
 # lets run with systemd ;-)
-run redshift -c ~/.config/redshift/redshift.conf
+#run redshift -c ~/.config/redshift/redshift.conf
 
 # Start tmux if not already running
 

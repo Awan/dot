@@ -181,9 +181,9 @@ useful_programs_which_can_be_used_in_any_window_manager='
 # make sure to set $TERMINAL env
 
 super {_,shift} + Return
-    {urxvtc,loc=$(slop -f "%x %y %w %h %g %i") || exit 1;\ 
+    {alacritty,loc=$(slop -f "%x %y %w %h %g %i") || exit 1;\ 
        read -r x y w h g id < <(echo $loc);\
-       bspc rule -a \* -o state=floating rectangle=$w"x"$h"+"$x"+"$y && urxvtc}
+       bspc rule -a \* -o state=floating rectangle=$w"x"$h"+"$x"+"$y && alacritty}
 
 # Termite
 
@@ -194,6 +194,11 @@ alt {_, shift } + Return
 
 super + d
     "$HOME"/.local/bin/dmenu_run
+
+# change wallpaper
+
+alt + w
+    feh --bg-scale --randomize "$HOME"/pix/wall/cuties/dark
 
 # Toggle mpd
 

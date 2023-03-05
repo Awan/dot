@@ -184,4 +184,7 @@ bspc config pointer_action3 resize_corner
 bspc config pointer_action1 move
 ~/.local/bin/my_panel &
 sleep 1
-urxvtc -T "scratchpad" -geometry 75x20
+alacritty -t 'scratchpad' &
+#urxvtc -T "scratchpad" -geometry 75x20
+
+# vim: ft=sh

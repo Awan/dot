@@ -28,15 +28,15 @@ battery() {
 }
 
 wifi() {
-    wifi_state=$(ifconfig iwm0 | awk '/status:/ { print $2 }')
-    ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
-    signals=$(ifconfig iwm0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
-    echo "$ssid $signals" 
+    wifi_state=$(ifconfig urtwn0 | awk '/status:/ { print $2 }')
+    ssid=$(ifconfig urtwn0 | awk '/(nwid|join)/ { print $3 }')
+    #signals=$(ifconfig urtwn0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
+    echo $ssid #$signals" 
 }
 
 mails()
 {
-  mails_count=$(find $HOME/.mail/Inbox/new -type f -print | wc -l)
+  mails_count=$(find $HOME/.local/share/email/x1c/INBOX/new -type f -print | wc -l)
   if [ $mails_count -eq 0 ]
   then
     echo 'No new mails'
