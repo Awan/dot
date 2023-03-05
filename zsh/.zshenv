@@ -1,5 +1,5 @@
 typeset -U path
-path=(~/.cargo/bin ~/.perl5/bin ~/.gem/ruby/2.7.0/bin ~/.local/bin ~/.local/lib ~/.pyenv/bin /usr/sbin /usr/bin/vendor_perl /sbin /usr/X11R6/bin /usr/games $path[@])
+path=(~/go/bin ~/.cargo/bin ~/.perl5/bin ~/.gem/ruby/2.7.0/bin ~/.local/bin ~/.local/lib ~/.pyenv/bin /usr/sbin /usr/bin/vendor_perl /sbin /usr/X11R6/bin /usr/games $path[@])
 
 BROWSER=$(which chrome)
 

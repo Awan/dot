@@ -6,7 +6,7 @@
 """     In the name of Allah, the most Gracious, the most Merciful. """
 """                                                                 """
 """      ▓▓▓▓▓▓▓▓▓▓                                                 """
-"""     ░▓ Author ▓ Abdullah <https://abdullah.today>               """
+"""     ░▓ Author ▓ Abdullah Khabir <https://abdullah.solutions>               """
 """     ░▓▓▓▓▓▓▓▓▓▓                                                 """
 """     ░░░░░░░░░░                                                  """
 """                                                                 """
@@ -55,6 +55,10 @@ set backupskip+=*.gpg,*.age
 
 " vim bullets for .md, .txt, and gitcommit
 let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'mail']
+
+" mmm abbreviated to my mail address
+iabbrev mmm abdullah@abdullah.solutions
+
 
 " Show relative numbers
 set rnu nu

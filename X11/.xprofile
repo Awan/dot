@@ -163,7 +163,7 @@ synclient PalmDetect=1 &
 
 # Dim the screen
 # xidle -timeout 30 -program ~/.local/bin/dim_screen &
-run xdimmer -t 30 -s 50 -p 1 -b 20 &
+run xdimmer -t 60 -s 50 -p 10 -b 50 &
 
 # Xidle
 xidle &
@@ -195,6 +195,9 @@ else
   tabular
 fi
 
+# IMAP mailbox changes script
+~/go/bin/goimapnotify -conf ~/.config/goimapnotify/goimapnotify.conf &
+
 # Start a scratchpad
 
 #alacritty --dimensions 55 15 --position 550 175 -t 'scratchpad' &
@@ -204,4 +207,3 @@ fi
 #xfce4-terminal -T scratchpad --font='Fantasque Sans Mono Italic 16'
 
 # vim:ft=sh
-

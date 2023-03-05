@@ -71,11 +71,12 @@ cpu() {
 }
 
 wifi() {
-    wifi_state=$(ifconfig iwm0 | awk '/status:/ { print $2 }')
+    wifi_state=$(ifconfig urtwn0 | awk '/status:/ { print $2 }')
     if [ $wifi_state = "no" ]; then
         :
     else
-        ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
+        ssid=$(ifconfig urtwn0 | awk '/(nwid|join)/ { print $3 }')
+        #signals=$(ifconfig iwm0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
         echo -n "%{F#94DFDB}%{B#000000}"
         echo -n "$ssid %{F-}%{B-}"
     fi

@@ -293,7 +293,7 @@ webcam () {
 
 psg () {
   pass generate "$1"  --clip
-  cd ~/.password-store
+  cd ~/.passage/store/
   git push
   cd -
 }
