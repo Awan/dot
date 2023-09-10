@@ -28,8 +28,8 @@ battery() {
 }
 
 wifi() {
-    wifi_state=$(ifconfig urtwn0 | awk '/status:/ { print $2 }')
-    ssid=$(ifconfig urtwn0 | awk '/(nwid|join)/ { print $3 }')
+    wifi_state=$(ifconfig iwm0 | awk '/status:/ { print $2 }')
+    ssid=$(ifconfig iwm0 | awk '/(nwid|join)/ { print $3 }')
     #signals=$(ifconfig urtwn0 | awk 'match($0, /[0-9]*%/) { print substr($0, RSTART, RLENGTH) }')
     echo $ssid #$signals" 
 }
