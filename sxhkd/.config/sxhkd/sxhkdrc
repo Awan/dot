@@ -198,7 +198,7 @@ super + d
 # change wallpaper
 
 alt + w
-    feh --bg-scale --randomize "$HOME"/pix/wall/cuties/dark
+    feh --bg-scale --randomize "$HOME"/pix/wall/cyb
 
 # Toggle mpd
 
